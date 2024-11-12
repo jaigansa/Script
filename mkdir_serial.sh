@@ -17,32 +17,28 @@ check_years() {
     fi
 
     # If both checks pass
-    echo " years: Start folder = $start_year, End Folder = $end_year"
+    echo "Valid years: Start year = $start_year, End year = $end_year"
     return 0
 }
 
-create_folder(){
-
+create_folder() {
     local start_year=$1
     local end_year=$2
     local folder_name=$3
 
-
-    for (( year=start_year; year<=end_year; year++ ));
-    do
-      dir_name="$folder_name$year"
-      mkdir -p "$dir_name"
-      echo "Directory  $dir_name created."
+    for ((year = start_year; year <= end_year; year++)); do
+        dir_name="$folder_name$year"
+        mkdir -p "$dir_name"
+        echo "Directory for year $dir_name created."
     done
 
     return 0
 
     echo "All directories have been created."
 
-
 }
 
-get_user_input(){
+get_user_input() {
     read -p "Enter the start year: " start_year
     read -p "Enter the end year: " end_year
     read -p "Enter folder Name: " folder_name
@@ -52,9 +48,7 @@ get_user_input
 
 check_years "$start_year" "$end_year"
 if [[ $? -ne 0 ]]; then
-    exit 1  # Exit if input is invalid
+    exit 1 # Exit if input is invalid
 fi
 
-create_folder  "$start_year" "$end_year" "$folder_name"
-
-
+create_folder "$start_year" "$end_year" "$folder_name"
